@@ -12,15 +12,9 @@ const uvBox = document.getElementById('uv-box');
 const btn = document.getElementById('btn');
 
 
-
-//NEED TO GET AN ICON OF WEATHER CONDITIONS --
-//NEED TO WORK OUT THE UV LON & LAD -- 
-//NEED TO GET THE 5-DAY FORECAST --
-//NEED TO MAKE THE HISTORY CLICK WORK
-
 //getting date  and time
 function dateTime () {
-  let now = moment().format('LLL'); 
+  let now = moment().format('LL'); 
   time.textContent = now ;
   }
   dateTime();
@@ -34,7 +28,7 @@ function user () {
   const userInput = input.value.trim();
 
   //displaying input city 
-  city.textContent = userInput;
+  city.textContent = userInput.toUpperCase();
 
   let responseApi = 'https://api.openweathermap.org/data/2.5/weather?q=' +userInput+ ',units=imperial&us&APPID=c6e868e79bd98cae1acee3ad146ee1cc';
   
@@ -49,7 +43,7 @@ fetch(responseApi)
   display(data);
 })
 .catch(error => {
-  alert('error: 404')
+  alert('Ut-oh, somethings not right. Please try again.')
 })
 document.createElement('img')
 
@@ -66,12 +60,10 @@ let lon = data.coord.lon
 console.log(lat, lon)
 
   //  getting icon 
-  let iconImg = data.weather[0].icon
-  console.log(iconImg)
-  const img = document.createElement('img');
-  img.src = 'http://openweathermap.org/img/wn/' + iconImg + '.png';
-  const iconDiv = document.getElementById('icon')
-  iconDiv.appendChild(img)
+  let icon = data.weather[0].icon 
+  let iconId = document.getElementById('weather-icon')
+  iconId.src = 'http://openweathermap.org/img/wn/' + icon + '.png';
+
 
 
     let tempResults = data.main.temp;
@@ -130,7 +122,7 @@ fetch(futureForecast)
   dt = dt.add(1, 'days')
   dt = dt.format('M-D')
   const dateOne = document.getElementById('forecast-block-1')
-  dateOne.append(dt)
+  dateOne.textContent = dt;
 
 
 // getting dates
@@ -138,25 +130,25 @@ fetch(futureForecast)
   dtTwo = dtTwo.add(2, 'days')
   dtTwo = dtTwo.format('M-D')
   const dateTwo = document.getElementById('forecast-block-2')
-  dateTwo.append(dtTwo)
+  dateTwo.textContent = dtTwo;
 
   let dtThree = moment();
   dtThree = dtThree.add(3, 'days')
   dtThree = dtThree.format('M-D')
   const dateThree = document.getElementById('forecast-block-3')
-  dateThree.append(dtThree)
+  dateThree.textContent = dtThree;
 
   let dtFour = moment();
   dtFour = dtFour.add(4, 'days')
   dtFour = dtFour.format('M-D')
   const dateFour = document.getElementById('forecast-block-4')
-  dateFour.append(dtFour)
+  dateFour.textContent = dtFour;
 
   let dtFive = moment();
   dtFive = dtFive.add(5, 'days')
   dtFive = dtFive.format('M-D')
   const dateFive = document.getElementById('forecast-block-5')
-  dateFive.append(dtFive)
+  dateFive.textContent = dtFive;
   
 // getting icons
   let dayOneIcon = data.list[0].weather[0].icon 
@@ -182,90 +174,80 @@ fetch(futureForecast)
   // getting temp
   let dayOneTemp = data.list[0].main.temp
   let temp1 = document.getElementById('day-1-block-temp')
-  temp1.append(dayOneTemp)
+  temp1.textContent = 'Temp: '  + dayOneTemp;
 
   let dayTwoTemp = data.list[7].main.temp
   let temp2 = document.getElementById('block-temp-2')
-  temp2.append(dayTwoTemp)
+  temp2.textContent = 'Temp: '  + dayTwoTemp;
 
   let dayThreeTemp = data.list[15].main.temp
   let temp3 = document.getElementById('block-temp-3')
-  temp3.append(dayThreeTemp)
+  temp3.textContent = 'Temp: '  + dayThreeTemp;
 
   let dayFourTemp = data.list[23].main.temp
   let temp4 = document.getElementById('block-temp-4')
-  temp4.append(dayFourTemp)
+  temp4.textContent = 'Temp: '  + dayFourTemp;
 
   let dayFiveTemp = data.list[31].main.temp
   let temp5 = document.getElementById('block-temp-5' )
-  temp5.append(dayFiveTemp)
+  temp5.textContent = 'Temp: '  + dayFiveTemp;
 
   // getting wind speed 
   let dayOneWind = data.list[0].wind.speed
   let wind1 = document.getElementById('day-1-block-wind')
-  wind1.append(dayOneWind + ' MPH')
+  wind1.textContent = 'Wind: '  + dayOneWind;
 
   let dayTwoWind = data.list[7].wind.speed
   let wind2 = document.getElementById('block-wind-2')
-  wind2.append(dayTwoWind + ' MPH')
+  wind2.textContent = 'Wind: '  + dayTwoWind
+
 
   let dayThreeWind = data.list[15].wind.speed
   let wind3 = document.getElementById('block-wind-3')
-  wind3.append(dayThreeWind+ ' MPH')
+  wind3.textContent = 'Wind: '  + dayThreeWind
+ 
 
   let dayFourWind = data.list[23].wind.speed
   let wind4 = document.getElementById('block-wind-4')
-  wind4.append(dayFourWind+ ' MPH')
+  wind4.textContent = 'Wind: '  + dayFourWind
+  
 
   let dayFiveWind = data.list[31].wind.speed
   let wind5 = document.getElementById('block-wind-5')
-  wind5.append(dayFiveWind+ ' MPH')
-
+  wind5.textContent = 'Wind: '  + dayFiveWind
+  
   // getting humidity 
   let dayOneHum = data.list[0].main.humidity
   let hum1 = document.getElementById('day-1-block-humidity')
-  hum1.append(dayOneHum + '%')
+  hum1.textContent = 'Humidity:' + dayOneHum + '%'
 
   let dayTwoHum = data.list[7].main.humidity
   let hum2 = document.getElementById('block-humidity-2')
-  hum2.append(dayTwoHum + '%')
+  hum2.textContent = 'Humidity:' +  dayTwoHum + '%'
 
   let dayThreeHum = data.list[15].main.humidity
   let hum3 = document.getElementById('block-humidity-3')
-  hum3.append(dayThreeHum + '%')
+  hum3.textContent = 'Humidity:' +  dayThreeHum + '%'
 
   let dayFourHum = data.list[23].main.humidity
   let hum4 = document.getElementById('block-humidity-4')
-  hum4.append(dayFourHum + '%')
+  hum4.textContent = 'Humidity:' +  dayFourHum + '%'
 
   let dayFiveHum = data.list[31].main.humidity
   let hum5 = document.getElementById('block-humidity-5')
-  hum5.append(dayFiveHum + '%')
+  hum5.textContent = 'Humidity:' +  dayFiveHum + '%'
 
 })
-
-
   })
-
-
-
-
-
   userLocalHistory();
-
-
 }
 }
-
   //get user input in local storage  and adding city to output page
 
   function userLocalHistory () {
 
-  
   const userInput = input.value.trim();
-
-
-
+  
     //setting local storage
     localStorage.setItem('city', userInput);
     const userLocal = localStorage.getItem('city')
@@ -273,11 +255,11 @@ fetch(futureForecast)
     const ulList = document.getElementById('city-ul-list')
     const btn = document.createElement('button');
     btn.setAttribute('id', 'history-button')
-    btn.textContent = userLocal;
+    btn.textContent = userInput.toUpperCase();
     ulList.appendChild(btn);
-    btn.addEventListener('click', user)
-
+    
   }
+
     
 
 
