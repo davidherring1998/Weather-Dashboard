@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+
+</head>
+<body>
+
+
+
+    <!-- header -->
+    <div class="header">
+    <head id="head"><h1>Weather Dashboard</h1></head>
+    </div>
+
+
+
+<div class="grid">
+    <!-- input section -->
+    <div class="input">
+
+        <!-- search header -->
+        <div id="search-header">
+            <h2>Search for a City:</h2>
+        </div>
+
+
+        <div id="search-input">
+            <input type="text"  id="search-bar" placeholder="Orlando.." > <br> <br>
+            <button id="search-button">Search</button>
+        </div>
+
+            <hr id="line">
+
+        <!-- city list section -->
+        <div class="city-list">
+            <ul id="city-ul-list">
+            </ul>
+        </div>
+    </div>
+
+    <!-- output -->
+    <div class="output">
+
+            <!-- city and date block -->
+            <div class="city-output">
+                <h2 id="city"></h2>
+                <div id="icon"></div>  
+                <h2 id="city-date">dummy text for time/date</h2>
+                <p id="temp">Temp: <p id="temp-output"></p></p>
+                <p id="wind" >Wind: <p id="wind-output"></p></p>
+                <p id="humidity">Humidity: <p id="humidity-output"></p></p>
+                <p id="uv">UV index: <p id="uv-index">
+                    <div id="uv-box"></div>
+                </p></p>
+            </div>
+    </div>
+</div>
+
+<h3 id="day-forecast">5-Day Forecast</h3>
+
+<div class="day-blocks">
+    <!-- weather blocks -->
+        <!-- 5 day forecast 1 -->
+     <div class="blocks">
+        <div id="day-1">
+
+                <!-- forecast blocks -->
+                <div id="forecast-block1">
+                    <h4 class="forecast-block" id="forecast-block-1"></h4>
+                    <img id="day-1-icon" src="#" alt="#">
+                    <p id="day-1-block-temp">Temp: </p>
+                    <p id="day-1-block-wind">Wind:  </p>
+                    <p id="day-1-block-humidity">Humidity:  </p>
+              </div>        
+        </div>
+    </div>
+
+        <!-- 5 day forecast 2 -->
+    <div class="blocks">
+        <div id="day-2">
+
+                <!-- forecast blocks 2 -->
+                <div id="forecast-block2">
+                    <h4 class="forecast-block" id="forecast-block-2"></h4>
+                    <img id="day-2-icon" src="#" alt="#">
+                    <p id="block-temp-2">Temp:  </p>
+                    <p id="block-wind-2">Wind:  </p>
+                    <p id="block-humidity-2">Humidity:  </p>
+    
+                </div>        
+        </div>
+    </div>
+        <!-- 5 day forecast -->
+    <div class="blocks">
+        <div id="day-3">
+
+                <!-- forecast blocks 3-->
+                <div id="forecast-block3">
+                    <h4 class="forecast-block" id="forecast-block-3"></h4>
+                    <img id="day-3-icon"  src="#" alt="#">
+                    <p id="block-temp-3">Temp:  </p>
+                    <p id="block-wind-3">Wind:  </p>
+                    <p id="block-humidity-3">Humidity:  </p>
+    
+                </div>        
+        </div>
+    </div>
+        <!-- 5 day forecast -->
+    <div class="blocks">
+        <div id="day-4">
+
+                <!-- forecast blocks  4 -->
+                <div id="forecast-block4">
+                    <h4 class="forecast-block" id="forecast-block-4"></h4>
+                    <img id="day-4-icon"  src="#" alt="#">
+                    <p id="block-temp-4">Temp:  </p>
+                    <p id="block-wind-4">Wind:  </p>
+                    <p id="block-humidity-4">Humidity:  </p>
+    
+                </div>        
+        </div>
+    </div>
+
+    <div class="blocks">
+        <div id="day-5">
+
+            <!-- forecast blocks  4 -->
+            <div id="forecast-block5">
+                <h4 class="forecast-block" id="forecast-block-5"></h4>
+                <img id="day-5-icon"  src="#" alt="#">
+                <p id="block-temp-5">Temp:  </p>
+                <p id="block-wind-5">Wind:  </p>
+                <p id="block-humidity-5">Humidity:  </p>
+
+            </div>        
+        </div>
+    </div>
+    </div>
+    <script src="apps.js"></script>
+</body>
+</html>
