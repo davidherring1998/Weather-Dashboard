@@ -9,8 +9,7 @@ Links:
 
 https://davidherring1998.github.io/Weather-Dashboard/
 
-
-https://github.com/davidherring1998/Weather-Dashboard/settings/pages
+https://github.com/davidherring1998/Weather-Dashboard
 
 
 Screenshots:
