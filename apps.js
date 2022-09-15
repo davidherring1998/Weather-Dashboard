@@ -11,7 +11,6 @@ const uvIndex = document.getElementById('uv-index')
 const uvBox = document.getElementById('uv-box');
 const btn = document.getElementById('btn');
 
-
 //getting date  and time
 function dateTime () {
   let now = moment().format('LL'); 
@@ -21,17 +20,17 @@ function dateTime () {
 
   const userInput = input.value.trim();
 
-// first function to retrieve data from api for first output
+
 function user () {
 
     // getting search input
   const userInput = input.value.trim();
+  
 
   //displaying input city 
   city.textContent = userInput.toUpperCase();
 
-  let responseApi = 'https://api.openweathermap.org/data/2.5/weather?q=' +userInput+ ',units=imperial&us&APPID=c6e868e79bd98cae1acee3ad146ee1cc';
-  
+  let responseApi = 'https://api.openweathermap.org/data/2.5/weather?q=' +userInput + ',us&APPID=c6e868e79bd98cae1acee3ad146ee1cc&units=imperial';
   // calling api 
 fetch(responseApi)
 .then(data => {
@@ -47,8 +46,6 @@ fetch(responseApi)
 })
 document.createElement('img')
 
-
-
 //getting icon display
 // displaying results inside first output block
 // getting lon and lat for uv index
@@ -57,18 +54,14 @@ function display (data){
 
 let lat = data.coord.lat
 let lon = data.coord.lon
-console.log(lat, lon)
 
   //  getting icon 
   let icon = data.weather[0].icon 
   let iconId = document.getElementById('weather-icon')
   iconId.src = 'http://openweathermap.org/img/wn/' + icon + '.png';
 
-
-
     let tempResults = data.main.temp;
-    temp.textContent = tempResults;
-    console.log(data.main.temp)
+    temp.textContent = tempResults + ' \u00B0F';
     temp.style.color = 'red';
     temp.style.fontSize='22px'
 
@@ -76,17 +69,14 @@ console.log(lat, lon)
     winds.textContent = windResults + ' mph';
     winds.style.color = 'red';
     winds.style.fontSize='22px'
-    console.log(data.wind.speed)
 
     let humidityResults = data.main.humidity;
     humidity.textContent = humidityResults + ' %'
     humidity.style.color = 'red';
     humidity.style.fontSize='22px'
-    console.log(data.main.humidity)
 
   // Calling uv api 
-  let indexUvApi = 'https://api.openweathermap.org/data/2.5/uvi?lat=' + lat + '&lon='+ lon + '&appid=c6e868e79bd98cae1acee3ad146ee1cc';
-
+  let indexUvApi = 'https://api.openweathermap.org/data/2.5/uvi?lat=' + lat + '&lon='+ lon + '&units=imperial&appid=c6e868e79bd98cae1acee3ad146ee1cc';
 
   fetch(indexUvApi)
   .then(data => {
@@ -109,7 +99,7 @@ console.log(lat, lon)
       }
 
 // getting 5 day forecast 
-let futureForecast = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&exclude=current,hourly&appid=" + 'c6e868e79bd98cae1acee3ad146ee1cc';
+let futureForecast = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&exclude=current,hourly&units=imperial&appid=" + 'c6e868e79bd98cae1acee3ad146ee1cc';
 fetch(futureForecast)
 .then((data) => {
   return data.json(data)
@@ -117,13 +107,11 @@ fetch(futureForecast)
 .then((data) => {
   console.log(data)
 
-
   let dt = moment();
   dt = dt.add(1, 'days')
   dt = dt.format('M-D')
   const dateOne = document.getElementById('forecast-block-1')
   dateOne.textContent = dt;
-
 
 // getting dates
   let dtTwo = moment();
@@ -174,47 +162,44 @@ fetch(futureForecast)
   // getting temp
   let dayOneTemp = data.list[0].main.temp
   let temp1 = document.getElementById('day-1-block-temp')
-  temp1.textContent = 'Temp: '  + dayOneTemp;
+  temp1.textContent = 'Temp: '  + dayOneTemp + ' \u00B0F';
 
   let dayTwoTemp = data.list[7].main.temp
   let temp2 = document.getElementById('block-temp-2')
-  temp2.textContent = 'Temp: '  + dayTwoTemp;
+  temp2.textContent = 'Temp: '  + dayTwoTemp + ' \u00B0F';
 
   let dayThreeTemp = data.list[15].main.temp
   let temp3 = document.getElementById('block-temp-3')
-  temp3.textContent = 'Temp: '  + dayThreeTemp;
+  temp3.textContent = 'Temp: '  + dayThreeTemp + ' \u00B0F';
 
   let dayFourTemp = data.list[23].main.temp
   let temp4 = document.getElementById('block-temp-4')
-  temp4.textContent = 'Temp: '  + dayFourTemp;
+  temp4.textContent = 'Temp: '  + dayFourTemp + ' \u00B0F';
 
   let dayFiveTemp = data.list[31].main.temp
   let temp5 = document.getElementById('block-temp-5' )
-  temp5.textContent = 'Temp: '  + dayFiveTemp;
+  temp5.textContent = 'Temp: '  + dayFiveTemp + ' \u00B0F';
 
   // getting wind speed 
   let dayOneWind = data.list[0].wind.speed
   let wind1 = document.getElementById('day-1-block-wind')
-  wind1.textContent = 'Wind: '  + dayOneWind;
+  wind1.textContent = 'Wind: '  + dayOneWind + ' MPH';
 
   let dayTwoWind = data.list[7].wind.speed
   let wind2 = document.getElementById('block-wind-2')
-  wind2.textContent = 'Wind: '  + dayTwoWind
-
+  wind2.textContent = 'Wind: '  + dayTwoWind + ' MPH';
 
   let dayThreeWind = data.list[15].wind.speed
   let wind3 = document.getElementById('block-wind-3')
-  wind3.textContent = 'Wind: '  + dayThreeWind
- 
+  wind3.textContent = 'Wind: '  + dayThreeWind + ' MPH';
 
   let dayFourWind = data.list[23].wind.speed
   let wind4 = document.getElementById('block-wind-4')
-  wind4.textContent = 'Wind: '  + dayFourWind
+  wind4.textContent = 'Wind: '  + dayFourWind + ' MPH';
   
-
   let dayFiveWind = data.list[31].wind.speed
   let wind5 = document.getElementById('block-wind-5')
-  wind5.textContent = 'Wind: '  + dayFiveWind
+  wind5.textContent = 'Wind: '  + dayFiveWind + ' MPH';
   
   // getting humidity 
   let dayOneHum = data.list[0].main.humidity
@@ -242,7 +227,7 @@ fetch(futureForecast)
   userLocalHistory();
 }
 }
-  //get user input in local storage  and adding city to output page
+//get user input in local storage  and adding city to output page
 
   function userLocalHistory () {
 
@@ -251,6 +236,8 @@ fetch(futureForecast)
     //setting local storage
     localStorage.setItem('city', userInput);
     const userLocal = localStorage.getItem('city')
+    const key = localStorage.getItem('city')
+    
 
     const ulList = document.getElementById('city-ul-list')
     const btn = document.createElement('button');
@@ -260,7 +247,9 @@ fetch(futureForecast)
     
   }
 
-    
 
 
+  console.log(userInput)
+
+  
 searchBtn.addEventListener('click', user)

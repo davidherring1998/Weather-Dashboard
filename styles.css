@@ -1,8 +1,8 @@
 
 body {
-    background: linear-gradient(-45deg, #e8a692, #e73c7e, #05abe8, #c5eee4);
+    background: linear-gradient(-45deg, yellow,  #05abe8, yellow);
     background-size: 200% 200%;
-    animation: gradient 10s ease infinite;
+    animation: gradient 20s ease infinite;
     margin: 0;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -12,7 +12,7 @@ body {
         background-position: 0% 50%;
     }
     50% {
-        background-position: 100% 50%;
+        background-position: 100% 100%;
     }
     100% {
         background-position: 0% 50%;
@@ -26,11 +26,12 @@ body {
 
 .header {
     background-color: #05abe8;
+    font-size: .8rem;
     text-align: center;
     color: black;
     border: 1px solid;
-    margin: 10px;
-    width: 100%;
+    margin-bottom: 30px;
+    /* width: 100%; */
 }
 
 
@@ -72,12 +73,13 @@ body {
     width: 100%;
     margin-right: auto;
     margin-left: -20px;
-    font-size: 1em;
+    font-size: .5%;
     display: block;
     width: 100%;
     border-radius: 10px;
     color: white;
     background-color: #00008B;
+    padding: 1px;
 }
 
 
@@ -116,6 +118,7 @@ body {
     padding:20px;
     width: 90%;
     align-items: center;
+    font-size: 1.1rem;
 }
 
 /* uv box */
@@ -143,10 +146,24 @@ body {
 /* block class */
 .blocks {
     border: solid;
-    margin: 2%;
+    margin: 1%;
     background-color: lavenderblush;
     padding: 5px;
     border: solid none;
     border-radius: 10px;
 }
 
+@media screen and (max-width: 700px ) {
+    .blocks {
+        font-size: .5rem;
+    }
+    .city-output {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (max-width: 500px ) {
+    #history-button {
+        font-size: .3rem;
+    }
+}
